@@ -3,16 +3,18 @@ import cv2
 import time
 import random as rng
 
+
 # Video source - can be camera index number given by 'ls /dev/video*
 # or can be a video file, e.g. '~/Video.avi'
 cap = cv2.VideoCapture(0)
 
-lower_range = np.array([30,226, 246], dtype = np.uint8)
-upper_range = np.array([30, 228, 248], dtype = np.uint8)
+lower_range = np.array([0,0, 255], dtype = np.uint8)
+upper_range = np.array([0, 0, 255], dtype = np.uint8)
 while(True):
-    # Capture frame-by-frame
+    # Capture frame-by-frames
     ret, frame = cap.read()
 
+    frame = cv2.resize(frame,(1280,640))
     # Our operations on the frame come here
     color = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
     mask = cv2.inRange(color, lower_range, upper_range)
@@ -77,11 +79,15 @@ while(True):
     ##print("Number of Contours found = " + str(len(contours))) 
     
     #time.sleep( 5 )
+    #756 231 53 51
+    #expected position    
+    #cv2.rectangle(res, (ex_x,ex_y), (ex_x+ex_w, ex_y+ex_h), (255,0,0),2) 
 
-    #cv2.drawContours(res, contours, -1, (0, 255, 0), 3) 
-    #c = max(contours, key = cv2.contourArea)
-    #x,y,w,h = cv2.boundingRect(c)
-    #cv2.rectangle(res,(x,y),(x+w,y+h),(0,255,0),2)
+    cv2.drawContours(res, contours, -1, (0, 255, 0), 3) 
+    c = max(contours, key = cv2.contourArea)
+    x,y,w,h = cv2.boundingRect(c)
+    cv2.rectangle(res,(x,y),(x+w,y+h),(0,255,0),2)
+    cv2.circle(res,(640,320),10,(0,0,255),2)
 
     #cv2.imshow('Contours', image) 
     
@@ -90,7 +96,7 @@ while(True):
 
     # Set our filtering parameters 
     # Initialize parameter settiing using cv2.SimpleBlobDetector 
-##    params = cv2.SimpleBlobDetector_Params() 
+##    params = cv2.DSimpleBlobDetector_Params() 
 ##      
 ##    # Set Area filtering parameters 
 ##    params.filterByArea = True
@@ -126,13 +132,16 @@ while(True):
 ##                cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 100, 255), 2) 
 ##
 
+    center_x = (x+w)/2
+    center_y = (y+h)/2
+    x_error = abs(640-x)
+    y_error = abs(320-y)
 
 
-
-    
-    
     cv2.imshow('frame',res)
-    
+    #print (x,y,w,h)
+    if(x_error < 30 and y_error < 30): print("at the front")
+    else: print("pivit by", 640-x," ",320-y)
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
 
