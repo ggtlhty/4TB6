@@ -6,5 +6,5 @@ pip3 install qrcode
 go into python3 in terminal by typing "python3"
 in python3 termina, do:
 
-import qrcode
+import qrcode;
 qrcode.make('hello').save('hello.png')
