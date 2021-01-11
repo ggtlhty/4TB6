@@ -1,3 +1,10 @@
+#in terminal do
+#pip3 install opencv-python
+#pip3 install 
+#then run the script
+#press "space" to take a picture
+#press "q" or "ctrl+z" to quit the program
+
 import cv2
 import imutils
 import time
@@ -5,7 +12,7 @@ import time
 cam = cv2.VideoCapture(0)
 cam.set(cv2.CAP_PROP_FRAME_WIDTH, 352)
 cam.set(cv2.CAP_PROP_FRAME_HEIGHT, 288)
-img_counter = 369
+img_counter = 0
 
 while True:
     ret, frame = cam.read()
