@@ -10,6 +10,7 @@ import imutils
 import time
 
 cam = cv2.VideoCapture(0)
+#specify image resolution
 cam.set(cv2.CAP_PROP_FRAME_WIDTH, 352)
 cam.set(cv2.CAP_PROP_FRAME_HEIGHT, 288)
 img_counter = 0
