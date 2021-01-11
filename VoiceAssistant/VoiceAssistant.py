@@ -4,7 +4,7 @@ import pandas as pd
 import speech_recognition as sr
 import os
 
-db = mysql.connector.connect(host="grocerymate.ciihxnyiyqwe.ca-central-1.rds.amazonaws.com", user="", password="", database="grocerymatedb")
+db = mysql.connector.connect(host="", user="", password="", database="grocerymatedb")
 cursor = db.cursor()
 cursor.execute("SELECT * FROM shop_1")
 result = cursor.fetchall()
