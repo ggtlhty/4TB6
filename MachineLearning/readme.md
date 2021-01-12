@@ -19,4 +19,4 @@ python3 -m venv tflite1-env;
 source tflite1-env/bin/activate;
 bash get_pi_requirements.sh;
 
-python3 TFLite_detection_webcam.py --modeldir=3BarModelV2 --resolution=300x300 (run the python file)
+python3 TFLite_detection_webcam.py --modeldir=3BarModelV2 --resolution=352x288 --threshold=0.3 (run the python file)
