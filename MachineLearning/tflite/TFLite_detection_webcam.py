@@ -198,6 +198,11 @@ while True:
             xmin = int(max(1,(boxes[i][1] * imW)))
             ymax = int(min(imH,(boxes[i][2] * imH)))
             xmax = int(min(imW,(boxes[i][3] * imW)))
+	    # for control: return (ymax-ymin)*(xmax-xmin)
+	    # resolution: 352 x 288 => center point: 352/2, 288/2
+	    # x-offset: (xmin+xmax)/2 - 352/2
+	    # y-offset: ... 
+	    
             
             cv2.rectangle(frame, (xmin,ymin), (xmax,ymax), (10, 255, 0), 2)
 
