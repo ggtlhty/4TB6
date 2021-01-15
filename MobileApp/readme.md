@@ -1,2 +1,2 @@
-mobile app: MIT App Inventer
+mobile app: MIT App Inventer;
 bluetooth: HC-05 module
