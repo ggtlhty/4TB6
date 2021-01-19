@@ -1,5 +1,6 @@
 in order to run the python script:
 in terminal, do:
+pip3 install pandas mysql-connector-python SpeechRecognition pyaudio;
 
 pip3 install pandas;
 pip install mysql-connector-python;
