@@ -1,6 +1,8 @@
 in order to run the python script:
 in terminal, do:
 pip3 install pandas mysql-connector-python SpeechRecognition pyaudio;
+sudo apt-get install libatlas-base-dev;
+
 
 pip3 install pandas;
 pip install mysql-connector-python;
