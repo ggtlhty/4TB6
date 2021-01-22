@@ -6,17 +6,17 @@ class Bluetooth:
         self.baudrate = 38400
         self.port = "/dev/serial0"
         self.serial = serial.Serial(self.port, self.baudrate)
-        self.msg_str = ""
+        self.msgStr = ""
     
-    def send_aisle_info(self, aisle_dict):
+    def sendAisleInfo(self, aisleDict):
         msg = ""
-        for aisle in aisle_dict:
+        for aisle in aisleDict:
             try:
                 # aisle = int(aisle)
                 msg += "aisle {}: ".format(int(aisle))
             except ValueError:
                 msg += "{}: ".format(aisle)
-            products = aisle_dict[aisle]
+            products = aisleDict[aisle]
             for product in products:
                 msg += "{}, ".format(product)
             msg = msg[:-2] + "\n"
@@ -25,6 +25,12 @@ class Bluetooth:
         self.serial.write(msg.encode())
             
     
-    def clear_msg_str(self):
-        self.msg_str = ""
+    def updatePrice(self, price, totalPrice):
+        msg = str(price) + " " + str(totalPrice)
+        self.serial.write(msg.encode())
+        print('message "{}" sent'.format(msg))
+    
+    
+    def clearMsgStr(self):
+        self.msgStr = ""
         
