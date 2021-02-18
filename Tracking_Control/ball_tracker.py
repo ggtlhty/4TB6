@@ -320,21 +320,17 @@ def main():
         frame_rate_calc= 1/time1        
         
   #------------------------------------------------------------------ported ended      
-        Ex = 0             # x initial in the middle
-        Ey = 0             # y initial in the middle
-        Er = 0             # ball radius initial to 0(no balls if r < ball_size)
-
+  '''
+	x = 0             # x initial in the middle
+        y = 0             # y initial in the middle
+        r = 0             # ball radius initial to 0(no balls if r < ball_size)
+'''
 # Variable explanation:
 # x : current center x coordinate y: current center y coordinate r: area of the rectangle
- 
-        for _ in range(10):
-            (tmp_x, tmp_y), tmp_r = find_blob()
-            if tmp_r > BALL_SIZE_MIN:
-                x = (xmin+xmax)/2
-                y = (ymin+ymax)/2
-                r = (xmax-xmin)*(ymax-ymin)
-                break
-
+        x = (xmin+xmax)/2
+        y = (ymin+ymax)/2
+        r = (xmax-xmin)*(ymax-ymin)
+             
         print(x, y, r)
 
         # scan:
