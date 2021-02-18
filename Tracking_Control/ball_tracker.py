@@ -332,13 +332,14 @@ def main():
             if tmp_r > BALL_SIZE_MIN:
                 x = (xmin+xmax)/2
                 y = (ymin+ymax)/2
-                r = (
+                r = (xmax-xmin)*(ymax-ymin)
                 break
 
         print(x, y, r)
 
         # scan:
-        if r < BALL_SIZE_MIN:
+	#if r < BALL_SIZE_MIN:
+        if r < 0:
             bw.stop()
             if scan_enable:
                 #bw.stop()
@@ -353,7 +354,7 @@ def main():
             else:
                 sleep(0.1)
             
-        elif r < BALL_SIZE_MAX:
+        elif r > 0:
             if follow_mode == 0:
                 if abs(x - CENTER_X) > MIDDLE_TOLERANT:
                     if x < CENTER_X:                              # Ball is on left
