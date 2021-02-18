@@ -115,13 +115,13 @@ rear_wheels_enable  = False
 front_wheels_enable = True
 pan_tilt_enable     = True
 
-if (show_image_enable or draw_circle_enable) and "DISPLAY" not in os.environ:
-    print('Warning: Display not found, turn off "show_image_enable" and "draw_circle_enable"')
-    show_image_enable   = False
-    draw_circle_enable  = False
+# if (show_image_enable or draw_circle_enable) and "DISPLAY" not in os.environ:
+#     print('Warning: Display not found, turn off "show_image_enable" and "draw_circle_enable"')
+#     show_image_enable   = False
+#     draw_circle_enable  = False
 
-kernel = np.ones((5,5),np.uint8)
-img = cv2.VideoCapture(-1)
+# kernel = np.ones((5,5),np.uint8)
+# img = cv2.VideoCapture(-1)
 
 SCREEN_WIDTH = 160
 SCREEN_HIGHT = 120
