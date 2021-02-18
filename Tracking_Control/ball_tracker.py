@@ -267,7 +267,6 @@ def main():
         # Grab frame from video stream
         # _, frame1 = videostream.stream.read()
 	frame1 = videostream.frame
-	
         # Acquire frame and resize to expected shape [1xHxWx3]
         frame = frame1.copy()
         frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
