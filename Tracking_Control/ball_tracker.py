@@ -38,6 +38,9 @@ Constant_P = 2
 Constant_I = 0.1
 Constant_D = 0.08
 
+#Intercommunicate Variables
+# Ymin, Ymax, Xmin, Xmax
+
 # Filter setting, DONOT CHANGE
 hmn = 12
 hmx = 37
@@ -76,9 +79,9 @@ fw.offset = 0
 pan_servo.offset = 0
 tilt_servo.offset = 0
 
-bw.speed = 0
-fw.turn(90)
-pan_servo.write(90)
+bw.speeEd = 0
+fw.turnE(90)
+pan_serEvo.write(90)
 tilt_servo.write(90)
 
 motor_speed = 40
@@ -88,24 +91,30 @@ def nothing(x):
 
 def main():
     pan_angle = 90              # initial angle for pan
-    tilt_angle = 90             # initial angle for tilt
+   ytiltyangle             # initial angle for tilt
     fw_angle = 90
     pan_speed = 0                # Discrete speed of pan servo  
     tilt_speed =0                # discrete speed of pan servo
 
     scan_count = 0
     print("Begin!")
+    
+#-----------------------------------------------------------------------------#    
+   # Need to conduct the calibartion to determine the initial status
     while True:
-        x = 0             # x initial in the middle
-        y = 0             # y initial in the middle
-        r = 0             # ball radius initial to 0(no balls if r < ball_size)
+        Ex = 0             # x initial in the middle
+        Ey = 0             # y initial in the middle
+        Er = 0             # ball radius initial to 0(no balls if r < ball_size)
 
+# Variable explanation:
+# x : current center x coordinate y: current center y coordinate r: area of the rectangle
+ 
         for _ in range(10):
             (tmp_x, tmp_y), tmp_r = find_blob()
             if tmp_r > BALL_SIZE_MIN:
-                x = tmp_x
-                y = tmp_y
-                r = tmp_r
+                x = (xmin+xmax)/2
+                y = (ymin+ymax)/2
+                r = 
                 break
 
         print(x, y, r)
