@@ -265,7 +265,7 @@ def main():
         t1 = cv2.getTickCount()
 
         # Grab frame from video stream
-        _, frame1 = videostream.read()
+        _, frame1 = videostream.stream.read()
 
         # Acquire frame and resize to expected shape [1xHxWx3]
         frame = frame1.copy()
