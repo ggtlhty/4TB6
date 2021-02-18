@@ -178,9 +178,9 @@ fw.offset = 0
 pan_servo.offset = 0
 tilt_servo.offset = 0
 
-bw.speeEd = 0
-fw.turnE(90)
-pan_serEvo.write(90)
+bw.speed = 0
+fw.turn(90)
+pan_servo.write(90)
 tilt_servo.write(90)
 
 motor_speed = 40
@@ -245,7 +245,7 @@ def main():
     videostream = VideoStream(resolution=(imW,imH),framerate=30).start()
     time.sleep(1)
     pan_angle = 90              # initial angle for pan
-    ytiltyangle = 0            # initial angle for tilt
+    tilt_angle = 0            # initial angle for tilt
     fw_angle = 90
     pan_speed = 0                # Discrete speed of pan servo  
     tilt_speed =0                # discrete speed of pan servo
