@@ -266,6 +266,7 @@ def main():
 
         # Grab frame from video stream
         _, frame1 = videostream.stream.read()
+	print(frame1)
         cv2.imshow('Object detector', frame1)
         # Acquire frame and resize to expected shape [1xHxWx3]
         frame = frame1.copy()
