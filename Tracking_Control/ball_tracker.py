@@ -256,7 +256,7 @@ def nothing(x):
 
 def main():
 
-    global frame_rate_calc
+    global frame_rate_calc, videostream
 #-----------------------------------------------------------------------------#    
    # Need to conduct the calibartion to determine the initial status
     while True:
