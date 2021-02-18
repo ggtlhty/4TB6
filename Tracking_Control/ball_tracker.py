@@ -332,11 +332,7 @@ def main():
             if tmp_r > BALL_SIZE_MIN:
                 x = (xmin+xmax)/2
                 y = (ymin+ymax)/2
-<<<<<<< HEAD
-                r = 
-=======
                 r = (xmax-xmin)*(ymax-ymin)
->>>>>>> ae8b9e603119c14de8784874b256bfd76b73fba4
                 break
 
         print(x, y, r)
