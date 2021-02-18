@@ -6,6 +6,10 @@ import cv2
 import numpy as np
 import picar
 import os
+from threading import Thread
+import importlib.util
+import sys
+import argparse
 
 picar.setup()
 # Show image captured by camera, True to turn on, you will need #DISPLAY and it also slows the speed of tracking
