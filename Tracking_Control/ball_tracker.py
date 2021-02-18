@@ -10,6 +10,7 @@ from threading import Thread
 import importlib.util
 import sys
 import argparse
+import time
 
 
 # Define VideoStream class to handle streaming of video from webcam in separate processing thread
