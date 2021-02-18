@@ -436,7 +436,7 @@ def main():
        
 def destroy():
     bw.stop()
-    #img.release()
+    videostream.stream.release()
     # Clean up
     cv2.destroyAllWindows()
     videostream.stop()
