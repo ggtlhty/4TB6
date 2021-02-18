@@ -418,6 +418,9 @@ def main():
 def destroy():
     bw.stop()
     img.release()
+    # Clean up
+    cv2.destroyAllWindows()
+    videostream.stop()
 
 def test():
     fw.turn(90)
