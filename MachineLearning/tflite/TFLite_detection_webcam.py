@@ -201,7 +201,9 @@ while True:
 	    # for control: return (ymax-ymin)*(xmax-xmin)
 	    # resolution: 352 x 288 => center point: 352/2, 288/2
 	    # x-offset: (xmin+xmax)/2 - 352/2
-	    # y-offset: ... 
+	    # y-offset: ...
+	    print("y max box coordinate" + str(ymax))
+	    
 	    
             
             cv2.rectangle(frame, (xmin,ymin), (xmax,ymax), (10, 255, 0), 2)
