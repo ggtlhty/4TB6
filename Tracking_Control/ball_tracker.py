@@ -321,11 +321,10 @@ def main():
         frame_rate_calc= 1/time1        
         
   #------------------------------------------------------------------ported ended      
-  '''
-	x = 0             # x initial in the middle
-        y = 0             # y initial in the middle
-        r = 0             # ball radius initial to 0(no balls if r < ball_size)
-'''
+
+	#x = 0             # x initial in the middle
+     #   y = 0             # y initial in the middle
+      #  r = 0             # ball radius initial to 0(no balls if r < ball_size)
 # Variable explanation:
 # x : current center x coordinate y: current center y coordinate r: area of the rectangle
         x = (xmin+xmax)/2
