@@ -326,96 +326,96 @@ def main():
       #  r = 0             # ball radius initial to 0(no balls if r < ball_size)
 # Variable explanation:
 # x : current center x coordinate y: current center y coordinate r: area of the rectangle
-        x = (xmin+xmax)/2
-        y = (ymin+ymax)/2
-        r = (xmax-xmin)*(ymax-ymin)
+    #     x = (xmin+xmax)/2
+    #     y = (ymin+ymax)/2
+    #     r = (xmax-xmin)*(ymax-ymin)
              
-        print(x, y, r)
+    #     print(x, y, r)
 
-        # scan:
-	#if r < BALL_SIZE_MIN:
-        if r < 0:
-            bw.stop()
-            if scan_enable:
-                #bw.stop()
-                pan_angle = SCAN_POS[scan_count][0]
-                tilt_angle = SCAN_POS[scan_count][1]
-                if pan_tilt_enable:
-                    pan_servo.write(pan_angle)
-                    tilt_servo.write(tilt_angle)
-                scan_count += 1
-                if scan_count >= len(SCAN_POS):
-                    scan_count = 0
-            else:
-                sleep(0.1)
+    #     # scan:
+	# #if r < BALL_SIZE_MIN:
+    #     if r < 0:
+    #         bw.stop()
+    #         if scan_enable:
+    #             #bw.stop()
+    #             pan_angle = SCAN_POS[scan_count][0]
+    #             tilt_angle = SCAN_POS[scan_count][1]
+    #             if pan_tilt_enable:
+    #                 pan_servo.write(pan_angle)
+    #                 tilt_servo.write(tilt_angle)
+    #             scan_count += 1
+    #             if scan_count >= len(SCAN_POS):
+    #                 scan_count = 0
+    #         else:
+    #             sleep(0.1)
             
-        elif r > 0:
-            if follow_mode == 0:
-                if abs(x - CENTER_X) > MIDDLE_TOLERANT:
-                    if x < CENTER_X:                              # Ball is on left
-                        pan_angle += CAMERA_STEP
-                        #print("Left   ", )
-                        if pan_angle > PAN_ANGLE_MAX:
-                            pan_angle = PAN_ANGLE_MAX
-                    else:                                         # Ball is on right
-                        pan_angle -= CAMERA_STEP
-                        #print("Right  ",)
-                        if pan_angle < PAN_ANGLE_MIN:
-                            pan_angle = PAN_ANGLE_MIN
-                if abs(y - CENTER_Y) > MIDDLE_TOLERANT:
-                    if y < CENTER_Y :                             # Ball is on top
-                        tilt_angle += CAMERA_STEP
-                        #print("Top    " )
-                        if tilt_angle > TILT_ANGLE_MAX:
-                            tilt_angle = TILT_ANGLE_MAX
-                    else:                                         # Ball is on bottom
-                        tilt_angle -= CAMERA_STEP
-                        #print("Bottom ")
-                        if tilt_angle < TILT_ANGLE_MIN:
-                            tilt_angle = TILT_ANGLE_MIN
-            else:
-                delta_x = CENTER_X - x
-                delta_y = CENTER_Y - y
-                print("x = %s, delta_x = %s" % (x, delta_x))
-                print("y = %s, delta_y = %s" % (y, delta_y))
-                delta_pan = int(Constant_P * float(CAMERA_X_ANGLE) / SCREEN_WIDTH * delta_x + Constant_I * float(CAMERA_X_ANGLE) / SCREEN_WIDTH * x + Constant_D * float(CAMERA_X_ANGLE) / SCREEN_WIDTH * pan_speed)
-                #print("delta_pan = %s" % delta_pan)
-                pan_angle += delta_pan
-                pan_speed = delta_pan
-                delta_tilt = int(Constant_P * float(CAMERA_Y_ANGLE) / SCREEN_HIGHT * delta_y + Constant_I * float(CAMERA_X_ANGLE) / SCREEN_WIDTH * y + Constant_D * float(CAMERA_X_ANGLE) / SCREEN_WIDTH * tilt_speed)
-                #print("delta_tilt = %s" % delta_tilt)
-                tilt_angle += delta_tilt
-                tilt_speed = delta_tilt
+    #     elif r > 0:
+    #         if follow_mode == 0:
+    #             if abs(x - CENTER_X) > MIDDLE_TOLERANT:
+    #                 if x < CENTER_X:                              # Ball is on left
+    #                     pan_angle += CAMERA_STEP
+    #                     #print("Left   ", )
+    #                     if pan_angle > PAN_ANGLE_MAX:
+    #                         pan_angle = PAN_ANGLE_MAX
+    #                 else:                                         # Ball is on right
+    #                     pan_angle -= CAMERA_STEP
+    #                     #print("Right  ",)
+    #                     if pan_angle < PAN_ANGLE_MIN:
+    #                         pan_angle = PAN_ANGLE_MIN
+    #             if abs(y - CENTER_Y) > MIDDLE_TOLERANT:
+    #                 if y < CENTER_Y :                             # Ball is on top
+    #                     tilt_angle += CAMERA_STEP
+    #                     #print("Top    " )
+    #                     if tilt_angle > TILT_ANGLE_MAX:
+    #                         tilt_angle = TILT_ANGLE_MAX
+    #                 else:                                         # Ball is on bottom
+    #                     tilt_angle -= CAMERA_STEP
+    #                     #print("Bottom ")
+    #                     if tilt_angle < TILT_ANGLE_MIN:
+    #                         tilt_angle = TILT_ANGLE_MIN
+    #         else:
+    #             delta_x = CENTER_X - x
+    #             delta_y = CENTER_Y - y
+    #             print("x = %s, delta_x = %s" % (x, delta_x))
+    #             print("y = %s, delta_y = %s" % (y, delta_y))
+    #             delta_pan = int(Constant_P * float(CAMERA_X_ANGLE) / SCREEN_WIDTH * delta_x + Constant_I * float(CAMERA_X_ANGLE) / SCREEN_WIDTH * x + Constant_D * float(CAMERA_X_ANGLE) / SCREEN_WIDTH * pan_speed)
+    #             #print("delta_pan = %s" % delta_pan)
+    #             pan_angle += delta_pan
+    #             pan_speed = delta_pan
+    #             delta_tilt = int(Constant_P * float(CAMERA_Y_ANGLE) / SCREEN_HIGHT * delta_y + Constant_I * float(CAMERA_X_ANGLE) / SCREEN_WIDTH * y + Constant_D * float(CAMERA_X_ANGLE) / SCREEN_WIDTH * tilt_speed)
+    #             #print("delta_tilt = %s" % delta_tilt)
+    #             tilt_angle += delta_tilt
+    #             tilt_speed = delta_tilt
 
-                if pan_angle > PAN_ANGLE_MAX:
-                    pan_angle = PAN_ANGLE_MAX
-                elif pan_angle < PAN_ANGLE_MIN:
-                    pan_angle = PAN_ANGLE_MIN
-                if tilt_angle > TILT_ANGLE_MAX:
-                    tilt_angle = TILT_ANGLE_MAX
-                elif tilt_angle < TILT_ANGLE_MIN:
-                    tilt_angle = TILT_ANGLE_MIN
+    #             if pan_angle > PAN_ANGLE_MAX:
+    #                 pan_angle = PAN_ANGLE_MAX
+    #             elif pan_angle < PAN_ANGLE_MIN:
+    #                 pan_angle = PAN_ANGLE_MIN
+    #             if tilt_angle > TILT_ANGLE_MAX:
+    #                 tilt_angle = TILT_ANGLE_MAX
+    #             elif tilt_angle < TILT_ANGLE_MIN:
+    #                 tilt_angle = TILT_ANGLE_MIN
             
-            if pan_tilt_enable:
-                pan_servo.write(pan_angle)
-                tilt_servo.write(tilt_angle)
-            sleep(0.01)
-            fw_angle = 180 - pan_angle
-            if fw_angle < FW_ANGLE_MIN or fw_angle > FW_ANGLE_MAX:
-                fw_angle = ((180 - fw_angle) - 90)/2 + 90
-                if front_wheels_enable:
-                    fw.turn(fw_angle)
-                if rear_wheels_enable:
-                    bw.speed = motor_speed
-                    bw.backward()
-            else:
-                if front_wheels_enable:
-                    fw.turn(fw_angle)
-                if rear_wheels_enable:
-                    bw.speed = motor_speed
-                    bw.forward()
-        else:
-            bw.stop()
+    #         if pan_tilt_enable:
+    #             pan_servo.write(pan_angle)
+    #             tilt_servo.write(tilt_angle)
+    #         sleep(0.01)
+    #         fw_angle = 180 - pan_angle
+    #         if fw_angle < FW_ANGLE_MIN or fw_angle > FW_ANGLE_MAX:
+    #             fw_angle = ((180 - fw_angle) - 90)/2 + 90
+    #             if front_wheels_enable:
+    #                 fw.turn(fw_angle)
+    #             if rear_wheels_enable:
+    #                 bw.speed = motor_speed
+    #                 bw.backward()
+    #         else:
+    #             if front_wheels_enable:
+    #                 fw.turn(fw_angle)
+    #             if rear_wheels_enable:
+    #                 bw.speed = motor_speed
+    #                 bw.forward()
+    #     else:
+    #         bw.stop()
         
         # Draw framerate in corner of frame
         cv2.putText(frame,'FPS: {0:.2f}'.format(frame_rate_calc),(30,50),cv2.FONT_HERSHEY_SIMPLEX,1,(255,255,0),2,cv2.LINE_AA)
