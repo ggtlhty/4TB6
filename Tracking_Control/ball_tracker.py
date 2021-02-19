@@ -434,7 +434,7 @@ def main():
 
        
 def destroy():
-    bw.stop()
+    #bw.stop()
     #img.release()
     # Clean up
     cv2.destroyAllWindows()
