@@ -267,7 +267,7 @@ def main():
     global videostream
     # Initialize video stream
     videostream = VideoStream(resolution=(imW,imH),framerate=30).start()
-    time.sleep(1)
+    #time.sleep(1)
     pan_angle = 90              # initial angle for pan
     tilt_angle = 0            # initial angle for tilt
     fw_angle = 90
@@ -286,7 +286,7 @@ def main():
 
         # Grab frame from video stream
         _, frame1 = videostream.stream.read()
-        print(frame1)
+        #print(frame1)
         cv2.imshow('Object detector', frame1)
         # Acquire frame and resize to expected shape [1xHxWx3]
         frame = frame1.copy()
