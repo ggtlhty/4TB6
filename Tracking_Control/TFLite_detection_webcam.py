@@ -378,12 +378,15 @@ while True:
        
 # Distancing Maintaining 
        if r == 0:#counter needed
+           print("NONONONONONONONON")
            bw.stop()
        elif r < 1000:
-           bw.speed = 20
+           print("FFFFFFFFFFFFF")
+           bw.speed = 25
            bw.forward()
        elif r < 1400:
-           bw.speed = 20
+           print("BBBBBBBBBBBBB")
+           bw.speed = 25
            bw.backward()
        else:
            bw.speed = 50
