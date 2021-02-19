@@ -389,13 +389,13 @@ while True:
 #              if front_wheels_enable:
               fw.turn(fw_angle)
 #          if rear_wheels_enable:
-              bw.speed = 20
+              bw.speed = 30
               bw.backward()                                                              
            else:
 #          if front_wheels_enable:
               fw.turn(fw_angle)
 #          if rear_wheels_enable:
-              bw.speed = 20
+              bw.speed = 30
               bw.forward()
 #       elif r < 1400:
 #           print("BBBBBBBBBBBBB")
