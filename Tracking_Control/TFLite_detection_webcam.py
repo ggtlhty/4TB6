@@ -182,8 +182,8 @@ SCREEN_WIDTH = 352
 SCREEN_HIGHT = 288
 CENTER_X = SCREEN_WIDTH/2
 CENTER_Y = SCREEN_HIGHT/2
-BALL_SIZE_MIN = 0 #SCREEN_HIGHT/5
-BALL_SIZE_MAX = 1500  #SCREEN_HIGHT/3
+BALL_SIZE_MIN = 1000 #SCREEN_HIGHT/5
+BALL_SIZE_MAX = 1400  #SCREEN_HIGHT/3
 
 #PID Control for Servo Control
 Constant_P = 2
@@ -331,7 +331,7 @@ while True:
     print(x, y, r)
 
     # scan:
-    if r < BALL_SIZE_MIN:
+    if r < BALL_SIZE_MIN:	#x=0, y=0 and a counter
        bw.stop()
        if scan_enable:
           #bw.stop()
@@ -375,6 +375,20 @@ while True:
            pan_servo.write(pan_angle)
            tilt_servo.write(tilt_angle)
        sleep(0.01)
+       
+# Distancing Maintaining 
+       if r == 0:
+           bw.stop()
+       elif r < 1000:
+	   bw.speed = 30
+	   bw.forward()
+	elif r < 2000:
+	   bw.speed = 30
+	   bw.backward()
+	else:
+	   bw.speed = 50
+	   bw.backward()
+		
        fw_angle = 195-pan_angle
        if fw_angle < FW_ANGLE_MIN or fw_angle > FW_ANGLE_MAX:
        # fw_angle = ((180 - fw_angle) - 90)/2 + 90
