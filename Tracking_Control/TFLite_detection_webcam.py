@@ -186,7 +186,7 @@ BALL_SIZE_MIN = 0 #SCREEN_HIGHT/5
 BALL_SIZE_MAX = 1500  #SCREEN_HIGHT/3
 
 #PID Control for Servo Control
-Constant_P = 1
+Constant_P = 2
 Constant_I = 0.1
 Constant_D = 0.08
 
@@ -320,9 +320,9 @@ while True:
     
     #-------------------------------------------------------------------------------------------------------------------------
     #Control for the robot
-    #x = 0             # x initial in the middle
-    #y = 0             # y initial in the middle
-    #r = 0             # ball radius initial to 0(no balls if r < ball_size
+    x = 0             # x initial in the middle
+    y = 0             # y initial in the middle
+    r = 0             # ball radius initial to 0(no balls if r < ball_size
 
     x = (xmax+xmin)/2
     y = (ymax+ymin)/2
