@@ -482,13 +482,12 @@ if __name__ == '__main__':
 
         # Load the Tensorflow Lite model.
         # If using Edge TPU, use special load_delegate argument
+        global interpreter
         if use_TPU:
-            global interpreter
             interpreter = Interpreter(model_path=PATH_TO_CKPT,
                                     experimental_delegates=[load_delegate('libedgetpu.so.1.0')])
             print(PATH_TO_CKPT)
         else:
-            global interpreter
             interpreter = Interpreter(model_path=PATH_TO_CKPT)
 
         interpreter.allocate_tensors()
