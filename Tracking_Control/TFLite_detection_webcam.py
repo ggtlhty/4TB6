@@ -227,7 +227,7 @@ tilt_servo.offset = 0
 bw.speed = 0
 fw.turn(105)
 pan_servo.write(90)                          
-tilt_servo.write(50)
+tilt_servo.write(20)
 
 motor_speed = 40
 
@@ -235,7 +235,7 @@ def nothing(x):
     pass
 
 pan_angle = 90              # initial angle for pan
-tilt_angle = 90             # initial angle for tilt
+tilt_angle = 20             # initial angle for tilt
 fw_angle = 105
 pan_speed = 0                # Discrete speed of pan servo  
 tilt_speed =0                # discrete speed of pan servo
