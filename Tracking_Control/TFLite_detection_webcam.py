@@ -393,20 +393,20 @@ while True:
            bw.backward()
 		
        fw_angle = 195-pan_angle
-       if fw_angle < FW_ANGLE_MIN or fw_angle > FW_ANGLE_MAX:
-          fw_angle = ((180 - fw_angle) - 90)/2 + 90
-          #fw.angle = 105
-          if front_wheels_enable:
-             fw.turn(fw_angle)
-          if rear_wheels_enable:
-              bw.speed = motor_speed
-              bw.backward()                                                              
-       else:
-          if front_wheels_enable:
-              fw.turn(fw_angle)
-          if rear_wheels_enable:
-              bw.speed = motor_speed
-              bw.forward()
+#       if fw_angle < FW_ANGLE_MIN or fw_angle > FW_ANGLE_MAX:
+#          fw_angle = ((180 - fw_angle) - 90)/2 + 90
+#          #fw.angle = 105
+#          if front_wheels_enable:
+#             fw.turn(fw_angle)
+#          if rear_wheels_enable:
+#              bw.speed = motor_speed
+#              bw.backward()                                                              
+#       else:
+#          if front_wheels_enable:
+#              fw.turn(fw_angle)
+#          if rear_wheels_enable:
+#              bw.speed = motor_speed
+#              bw.forward()
     else:
         bw.stop()
     # Press 'q' to quit
