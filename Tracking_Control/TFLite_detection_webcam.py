@@ -186,7 +186,7 @@ BALL_SIZE_MIN = 0 #SCREEN_HIGHT/5
 BALL_SIZE_MAX = 1500  #SCREEN_HIGHT/3
 
 #PID Control for Servo Control
-Constant_P = 2
+Constant_P = 1
 Constant_I = 0.1
 Constant_D = 0.08
 
