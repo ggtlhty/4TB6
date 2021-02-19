@@ -183,7 +183,7 @@ SCREEN_HIGHT = 288
 CENTER_X = SCREEN_WIDTH/2
 CENTER_Y = SCREEN_HIGHT/2
 BALL_SIZE_MIN = 0 #SCREEN_HIGHT/5
-BALL_SIZE_MAX = 1400  #SCREEN_HIGHT/3
+BALL_SIZE_MAX = 2000  #SCREEN_HIGHT/3
 
 #PID Control for Servo Control
 Constant_P = 2
@@ -382,32 +382,31 @@ while True:
            bw.stop()
        elif r < 1200:
            print("FFFFFFFFFFFFF")
-           bw.speed = 25
-           bw.forward()
+           fw_angle = 195-pan_angle
+           if fw_angle < FW_ANGLE_MIN or fw_angle > FW_ANGLE_MAX:
+              fw_angle = ((180 - fw_angle) - 90)/2 + 90
+          #fw.angle = 105
+#              if front_wheels_enable:
+              fw.turn(fw_angle)
+#          if rear_wheels_enable:
+              bw.speed = 20
+              bw.backward()                                                              
+           else:
+#          if front_wheels_enable:
+              fw.turn(fw_angle)
+#          if rear_wheels_enable:
+              bw.speed = 20
+              bw.forward()
 #       elif r < 1400:
 #           print("BBBBBBBBBBBBB")
 #           bw.speed = 25
 #           bw.backward()
        else:
            print("BBBBBBBBBBBBB")
-           bw.speed = 50
+           bw.speed = 30
            bw.backward()
 		
-       fw_angle = 195-pan_angle
-       if fw_angle < FW_ANGLE_MIN or fw_angle > FW_ANGLE_MAX:
-          fw_angle = ((180 - fw_angle) - 90)/2 + 90
-          #fw.angle = 105
-          if front_wheels_enable:
-             fw.turn(fw_angle)
-          if rear_wheels_enable:
-              bw.speed = motor_speed
-              bw.backward()                                                              
-       else:
-          if front_wheels_enable:
-              fw.turn(fw_angle)
-          if rear_wheels_enable:
-              bw.speed = motor_speed
-              bw.forward()
+       
     else:
         bw.stop()
     # Press 'q' to quit
