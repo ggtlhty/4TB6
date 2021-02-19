@@ -163,7 +163,7 @@ def nothing(x):
     pass
 
 def main():
-    
+
 #-----------------------------------------------------------------------------#    
    # Need to conduct the calibartion to determine the initial status
     while True:
@@ -413,7 +413,8 @@ def test():
 
 if __name__ == '__main__':
     try:
-        global MODEL_NAME = '3BarModelV4_1'
+        global MODEL_NAME
+        MODEL_NAME = '3BarModelV4_1'
         global GRAPH_NAME = 'detect.tflite'
         global LABELMAP_NAME = 'labelmap.txt'
         global min_conf_threshold = float(0.05)
