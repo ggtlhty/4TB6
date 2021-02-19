@@ -74,8 +74,6 @@ class VideoStream:
 # args = parser.parse_args()
 
 
-
-
 #-------------------------ported from the machinelearningcamera.py------end
 
 
@@ -163,6 +161,121 @@ def nothing(x):
     pass
 
 def main():
+    global MODEL_NAME
+    MODEL_NAME = '3BarModelV4_1'
+    global GRAPH_NAME
+    GRAPH_NAME = 'detect.tflite'
+    global LABELMAP_NAME
+    LABELMAP_NAME = 'labelmap.txt'
+    global min_conf_threshold
+    min_conf_threshold = float(0.05)
+    global resW, resH
+    resW, resH = 352, 288
+    global imW, imH
+    imW, imH = int(resW), int(resH)
+    global use_TPU
+    use_TPU = False
+
+    # Import TensorFlow libraries
+    # If tflite_runtime is installed, import interpreter from tflite_runtime, else import from regular tensorflow
+    # If using Coral Edge TPU, import the load_delegate library
+    global pkg
+    pkg = importlib.util.find_spec('tflite_runtime')
+    if pkg:
+        from tflite_runtime.interpreter import Interpreter
+        if use_TPU:
+            from tflite_runtime.interpreter import load_delegate
+    else:
+        from tensorflow.lite.python.interpreter import Interpreter
+        if use_TPU:
+            from tensorflow.lite.python.interpreter import load_delegate
+
+    # If using Edge TPU, assign filename for Edge TPU model
+    if use_TPU:
+        # If user has specified the name of the .tflite file, use that name, otherwise use default 'edgetpu.tflite'
+        if (GRAPH_NAME == 'detect.tflite'):
+            GRAPH_NAME = 'edgetpu.tflite'   
+
+
+
+    MODEL_NAME = '3BarModelV4_1'
+    GRAPH_NAME = 'detect.tflite'
+    LABELMAP_NAME = 'labelmap.txt'
+    min_conf_threshold = float(0.05)
+    resW, resH = 352, 288
+    imW, imH = int(resW), int(resH)
+    use_TPU = False
+    # Get path to current working directory
+    global CWD_PATH
+    CWD_PATH = os.getcwd()
+
+    # Path to .tflite file, which contains the model that is used for object detection
+    global PATH_TO_CKPT
+    PATH_TO_CKPT = os.path.join(CWD_PATH,MODEL_NAME,GRAPH_NAME)
+
+    # Path to label map file
+    global PATH_TO_LABELS
+    PATH_TO_LABELS = os.path.join(CWD_PATH,MODEL_NAME,LABELMAP_NAME)
+
+    # Load the label map
+    with open(PATH_TO_LABELS, 'r') as f:
+        global labels
+        labels = [line.strip() for line in f.readlines()]
+
+    # Have to do a weird fix for label map if using the COCO "starter model" from
+    # https://www.tensorflow.org/lite/models/object_detection/overview
+    # First label is '???', which has to be removed.
+    if labels[0] == '???':
+        del(labels[0])
+
+    # Load the Tensorflow Lite model.
+    # If using Edge TPU, use special load_delegate argument
+    global interpreter
+    if use_TPU:
+        interpreter = Interpreter(model_path=PATH_TO_CKPT,
+                                experimental_delegates=[load_delegate('libedgetpu.so.1.0')])
+        print(PATH_TO_CKPT)
+    else:
+        interpreter = Interpreter(model_path=PATH_TO_CKPT)
+
+    interpreter.allocate_tensors()
+
+    # Get model details
+    global input_details
+    input_details = interpreter.get_input_details()
+    global output_details
+    output_details = interpreter.get_output_details()
+    global height
+    height = input_details[0]['shape'][1]
+    global width
+    width = input_details[0]['shape'][2]
+
+    global floating_model
+    floating_model = (input_details[0]['dtype'] == np.float32)
+
+    global input_mean
+    input_mean = 127.5
+    global input_std
+    input_std = 127.5
+
+    # Initialize frame rate calculation
+    global frame_rate_calc
+    frame_rate_calc = 1
+    global freq
+    freq = cv2.getTickFrequency()
+
+    global videostream
+    # Initialize video stream
+    videostream = VideoStream(resolution=(imW,imH),framerate=30).start()
+    time.sleep(1)
+    pan_angle = 90              # initial angle for pan
+    tilt_angle = 0            # initial angle for tilt
+    fw_angle = 90
+    pan_speed = 0                # Discrete speed of pan servo  
+    tilt_speed =0                # discrete speed of pan servo
+
+    scan_count = 0
+    print("Begin!")    
 
 #-----------------------------------------------------------------------------#    
    # Need to conduct the calibartion to determine the initial status
@@ -413,121 +526,6 @@ def test():
 
 if __name__ == '__main__':
     try:
-        global MODEL_NAME
-        MODEL_NAME = '3BarModelV4_1'
-        global GRAPH_NAME
-        GRAPH_NAME = 'detect.tflite'
-        global LABELMAP_NAME
-        LABELMAP_NAME = 'labelmap.txt'
-        global min_conf_threshold
-        min_conf_threshold = float(0.05)
-        global resW, resH
-        resW, resH = 352, 288
-        global imW, imH
-        imW, imH = int(resW), int(resH)
-        global use_TPU
-        use_TPU = False
-
-        # Import TensorFlow libraries
-        # If tflite_runtime is installed, import interpreter from tflite_runtime, else import from regular tensorflow
-        # If using Coral Edge TPU, import the load_delegate library
-        global pkg
-        pkg = importlib.util.find_spec('tflite_runtime')
-        if pkg:
-            from tflite_runtime.interpreter import Interpreter
-            if use_TPU:
-                from tflite_runtime.interpreter import load_delegate
-        else:
-            from tensorflow.lite.python.interpreter import Interpreter
-            if use_TPU:
-                from tensorflow.lite.python.interpreter import load_delegate
-
-        # If using Edge TPU, assign filename for Edge TPU model
-        if use_TPU:
-            # If user has specified the name of the .tflite file, use that name, otherwise use default 'edgetpu.tflite'
-            if (GRAPH_NAME == 'detect.tflite'):
-                GRAPH_NAME = 'edgetpu.tflite'   
-
-
-
-        MODEL_NAME = '3BarModelV4_1'
-        GRAPH_NAME = 'detect.tflite'
-        LABELMAP_NAME = 'labelmap.txt'
-        min_conf_threshold = float(0.05)
-        resW, resH = 352, 288
-        imW, imH = int(resW), int(resH)
-        use_TPU = False
-        # Get path to current working directory
-        global CWD_PATH
-        CWD_PATH = os.getcwd()
-
-        # Path to .tflite file, which contains the model that is used for object detection
-        global PATH_TO_CKPT
-        PATH_TO_CKPT = os.path.join(CWD_PATH,MODEL_NAME,GRAPH_NAME)
-
-        # Path to label map file
-        global PATH_TO_LABELS
-        PATH_TO_LABELS = os.path.join(CWD_PATH,MODEL_NAME,LABELMAP_NAME)
-
-        # Load the label map
-        with open(PATH_TO_LABELS, 'r') as f:
-            global labels
-            labels = [line.strip() for line in f.readlines()]
-
-        # Have to do a weird fix for label map if using the COCO "starter model" from
-        # https://www.tensorflow.org/lite/models/object_detection/overview
-        # First label is '???', which has to be removed.
-        if labels[0] == '???':
-            del(labels[0])
-
-        # Load the Tensorflow Lite model.
-        # If using Edge TPU, use special load_delegate argument
-        global interpreter
-        if use_TPU:
-            interpreter = Interpreter(model_path=PATH_TO_CKPT,
-                                    experimental_delegates=[load_delegate('libedgetpu.so.1.0')])
-            print(PATH_TO_CKPT)
-        else:
-            interpreter = Interpreter(model_path=PATH_TO_CKPT)
-
-        interpreter.allocate_tensors()
-
-        # Get model details
-        global input_details
-        input_details = interpreter.get_input_details()
-        global output_details
-        output_details = interpreter.get_output_details()
-        global height
-        height = input_details[0]['shape'][1]
-        global width
-        width = input_details[0]['shape'][2]
-
-        global floating_model
-        floating_model = (input_details[0]['dtype'] == np.float32)
-
-        global input_mean
-        input_mean = 127.5
-        global input_std
-        input_std = 127.5
-
-        # Initialize frame rate calculation
-        global frame_rate_calc
-        frame_rate_calc = 1
-        global freq
-        freq = cv2.getTickFrequency()
-
-        global videostream
-        # Initialize video stream
-        videostream = VideoStream(resolution=(imW,imH),framerate=30).start()
-        time.sleep(1)
-        pan_angle = 90              # initial angle for pan
-        tilt_angle = 0            # initial angle for tilt
-        fw_angle = 90
-        pan_speed = 0                # Discrete speed of pan servo  
-        tilt_speed =0                # discrete speed of pan servo
-
-        scan_count = 0
-        print("Begin!")    
         main()
     except KeyboardInterrupt:
         destroy()
