@@ -377,13 +377,13 @@ while True:
        sleep(0.01)
        
 # Distancing Maintaining 
-       if r == 0:
+       if r == 0:#counter needed
            bw.stop()
        elif r < 1000:
-           bw.speed = 30
+           bw.speed = 20
            bw.forward()
-       elif r < 2000:
-           bw.speed = 30
+       elif r < 1400:
+           bw.speed = 20
            bw.backward()
        else:
            bw.speed = 50
