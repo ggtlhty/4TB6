@@ -394,8 +394,8 @@ while True:
 		
        fw_angle = 195-pan_angle
        if fw_angle < FW_ANGLE_MIN or fw_angle > FW_ANGLE_MAX:
-       # fw_angle = ((180 - fw_angle) - 90)/2 + 90
-          fw.angle = 105
+          fw_angle = ((180 - fw_angle) - 90)/2 + 90
+          #fw.angle = 105
           if front_wheels_enable:
              fw.turn(fw_angle)
           if rear_wheels_enable:
