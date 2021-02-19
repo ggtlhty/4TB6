@@ -380,14 +380,14 @@ while True:
        if r == 0:
            bw.stop()
        elif r < 1000:
-	   bw.speed = 30
-	   bw.forward()
+           bw.speed = 30
+           bw.forward()
        elif r < 2000:
-	   bw.speed = 30
-	   bw.backward()
+           bw.speed = 30
+           bw.backward()
        else:
-	   bw.speed = 50
-	   bw.backward()
+           bw.speed = 50
+           bw.backward()
 		
        fw_angle = 195-pan_angle
        if fw_angle < FW_ANGLE_MIN or fw_angle > FW_ANGLE_MAX:
