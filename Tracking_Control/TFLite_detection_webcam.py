@@ -198,10 +198,6 @@ smx = 255
 vmn = 186
 vmx = 255
 
-# camera follow mode:
-# 0 = step by step(slow, stable), 
-# 1 = calculate the step(fast, unstable)
-follow_mode = 1
 
 CAMERA_STEP = 2
 CAMERA_X_ANGLE = 20
@@ -348,30 +344,6 @@ while True:
              sleep(0.1)
             
     elif r < BALL_SIZE_MAX:
-       if follow_mode == 0:
-          if abs(x - CENTER_X) > MIDDLE_TOLERANT:
-             if x < CENTER_X:                              # Ball is on left
-                pan_angle += CAMERA_STEP
-                #print("Left   ", )
-                if pan_angle > PAN_ANGLE_MAX:
-                   pan_angle = PAN_ANGLE_MAX
-             else:                                         # Ball is on right
-                pan_angle -= CAMERA_STEP
-                #print("Right  ",)
-                if pan_angle < PAN_ANGLE_MIN:
-                    pan_angle = PAN_ANGLE_MIN
-          if abs(y - CENTER_Y) > MIDDLE_TOLERANT:
-             if y < CENTER_Y :                             # Ball is on top
-                tilt_angle += CAMERA_STEP
-                #print("Top    " )
-                if tilt_angle > TILT_ANGLE_MAX:
-                    tilt_angle = TILT_ANGLE_MAX
-                else:                                         # Ball is on bottom
-                    tilt_angle -= CAMERA_STEP
-                    #print("Bottom ")
-                    if tilt_angle < TILT_ANGLE_MIN:
-                        tilt_angle = TILT_ANGLE_MIN
-      else:
        delta_x = CENTER_X - x
        delta_y = CENTER_Y - y
        print("x = %s, delta_x = %s" % (x, delta_x))
