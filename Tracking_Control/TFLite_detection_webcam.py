@@ -353,11 +353,12 @@ while True:
        print("y = %s, delta_y = %s" % (y, delta_y))
        delta_pan = int(Constant_P * float(CAMERA_X_ANGLE) / SCREEN_WIDTH * delta_x + Constant_I * float(CAMERA_X_ANGLE) / SCREEN_WIDTH * x + Constant_D * float(CAMERA_X_ANGLE) / SCREEN_WIDTH * pan_speed)
        if x==0 and y ==0: delta_pan = 0
-       #print("delta_pan = %s" % delta_pan)
+       print("delta_pan = %s" % delta_pan)
        pan_angle += delta_pan
        pan_speed = delta_pan
+	if x==0 and y ==0: delta_tilt = 0
        delta_tilt = int(Constant_P * float(CAMERA_Y_ANGLE) / SCREEN_HIGHT * delta_y + Constant_I * float(CAMERA_X_ANGLE) / SCREEN_WIDTH * y + Constant_D * float(CAMERA_X_ANGLE) / SCREEN_WIDTH * tilt_speed)
-       #print("delta_tilt = %s" % delta_tilt)
+       print("delta_tilt = %s" % delta_tilt)
        tilt_angle += delta_tilt
        tilt_speed = delta_tilt
 
