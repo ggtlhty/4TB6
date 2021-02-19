@@ -227,7 +227,7 @@ tilt_servo.offset = 0
 bw.speed = 0
 fw.turn(105)
 pan_servo.write(90)                          
-tilt_servo.write(90)
+tilt_servo.write(50)
 
 motor_speed = 40
 
