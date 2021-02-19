@@ -256,7 +256,7 @@ def nothing(x):
 
 def main():
 
-    
+    global frame_rate_calc, videostream
 #-----------------------------------------------------------------------------#    
    # Need to conduct the calibartion to determine the initial status
     while True:
@@ -265,8 +265,9 @@ def main():
         t1 = cv2.getTickCount()
 
         # Grab frame from video stream
-        frame1 = videostream.read()
-
+        _, frame1 = videostream.stream.read()
+        print(frame1)
+        cv2.imshow('Object detector', frame1)
         # Acquire frame and resize to expected shape [1xHxWx3]
         frame = frame1.copy()
         frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
@@ -434,8 +435,8 @@ def main():
 
        
 def destroy():
-    #bw.stop()
-    #img.release()
+    bw.stop()
+    videostream.stream.release()
     # Clean up
     cv2.destroyAllWindows()
     videostream.stop()
