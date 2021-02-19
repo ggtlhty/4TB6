@@ -268,14 +268,14 @@ def main():
     # Initialize video stream
     videostream = VideoStream(resolution=(imW,imH),framerate=30).start()
     #time.sleep(1)
-    pan_angle = 90              # initial angle for pan
-    tilt_angle = 0            # initial angle for tilt
-    fw_angle = 90
-    pan_speed = 0                # Discrete speed of pan servo  
-    tilt_speed =0                # discrete speed of pan servo
+    # pan_angle = 90              # initial angle for pan
+    # tilt_angle = 0            # initial angle for tilt
+    # fw_angle = 90
+    # pan_speed = 0                # Discrete speed of pan servo  
+    # tilt_speed =0                # discrete speed of pan servo
 
-    scan_count = 0
-    print("Begin!")    
+    # scan_count = 0
+    # print("Begin!")    
 
 #-----------------------------------------------------------------------------#    
    # Need to conduct the calibartion to determine the initial status
@@ -285,7 +285,7 @@ def main():
         t1 = cv2.getTickCount()
 
         # Grab frame from video stream
-        _, frame1 = videostream.stream.read()
+        frame1 = videostream.stream.read()
         #print(frame1)
         cv2.imshow('Object detector', frame1)
         # Acquire frame and resize to expected shape [1xHxWx3]
