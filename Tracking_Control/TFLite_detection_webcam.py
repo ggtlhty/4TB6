@@ -371,7 +371,7 @@ while True:
                     #print("Bottom ")
                     if tilt_angle < TILT_ANGLE_MIN:
                         tilt_angle = TILT_ANGLE_MIN
-    else:
+      else:
        delta_x = CENTER_X - x
        delta_y = CENTER_Y - y
        print("x = %s, delta_x = %s" % (x, delta_x))
