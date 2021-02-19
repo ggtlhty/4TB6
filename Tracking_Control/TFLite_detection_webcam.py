@@ -382,10 +382,10 @@ while True:
        elif r < 1000:
 	   bw.speed = 30
 	   bw.forward()
-	elif r < 2000:
+       elif r < 2000:
 	   bw.speed = 30
 	   bw.backward()
-	else:
+       else:
 	   bw.speed = 50
 	   bw.backward()
 		
