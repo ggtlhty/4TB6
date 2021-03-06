@@ -171,7 +171,7 @@ time.sleep(1)
 picar.setup()
 
 # Control Panel for the Robot
-scan_enable         = False
+scan_enable         = True
 rear_wheels_enable  = False
 front_wheels_enable = True
 pan_tilt_enable     = True
