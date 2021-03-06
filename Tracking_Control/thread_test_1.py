@@ -237,11 +237,16 @@ motor_speed = 40
 def nothing(x):
     pass
 
-pan_angle = 90              # initial angle for pan
-tilt_angle = 20             # initial angle for tilt
+global pan_angle
+pan_angle = 90 # initial angle for pan
+global tilt_angle
+tilt_angle = 20   # initial angle for tilt
+global fw_angle
 fw_angle = 105
-pan_speed = 0                # Discrete speed of pan servo  
-tilt_speed =0                # discrete speed of pan servo
+global pan_speed
+pan_speed = 0# Discrete speed of pan servo  
+global tilt_speed
+tilt_speed =0# discrete speed of pan servo
 
 x = 0			#initial x position of the center
 y = 0 			#initial y position of the center
@@ -256,11 +261,6 @@ class myThread (threading.Thread):
       self.threadID = threadID
       self.name = name
       self.counter = counter
-      self.pan_angle = 90              # initial angle for pan
-      self.tilt_angle = 20             # initial angle for tilt
-      self.fw_angle = 105
-      self.pan_speed = 0                # Discrete speed of pan servo  
-      self.tilt_speed =0                # discrete speed of pan servo
    def run(self):
       print("Starting " + self.name)
       control_module_thread()
