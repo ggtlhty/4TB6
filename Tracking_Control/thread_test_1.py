@@ -377,8 +377,6 @@ def control_module_thread():
                 bw.speed = pid_speed
                 bw.forward()
         r = 0
- 
-        
         else:
             bw.stop()
         # Press 'q' to quit
