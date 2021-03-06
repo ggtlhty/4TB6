@@ -366,6 +366,7 @@ def control_module_thread():
                         pid_speed = 60
                     bw.speed = pid_speed
                     bw.backward()
+                r = 0
     #       elif r < 1400:
     #           print("BBBBBBBBBBBBB")
     #           bw.speed = 25
@@ -378,7 +379,6 @@ def control_module_thread():
                 bw.forward()
         else:
             bw.stop()
-        r = 0
         # Press 'q' to quit
 
 	
