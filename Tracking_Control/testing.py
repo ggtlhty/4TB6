@@ -96,6 +96,7 @@ print("Begin!")
 while True:
    fw_angle = 96
    pan_servo.write(90)
+   tilt_servo.write(20)
    fw.turn(fw_angle)
    bw.speed = 30
    bw.backward()
