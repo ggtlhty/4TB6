@@ -416,7 +416,7 @@ while True:
 #           bw.speed = 25
 #           bw.backward()
        else:
-           pid_speed = 2 * int((r-1200)/1200*60)
+           pid_speed = int (1.8 * (r-1200)/1200*60)
            if pid_speed > 60 : pid_speed = 60
            bw.speed = pid_speed
            bw.forward()
