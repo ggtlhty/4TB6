@@ -210,12 +210,12 @@ MIDDLE_TOLERANT = 5
 PAN_ANGLE_MAX   = 170
 PAN_ANGLE_MIN   = 10
 TILT_ANGLE_MAX  = 150
-TILT_ANGLE_MIN  = 70
-FW_ANGLE_MAX    = 90+50
-FW_ANGLE_MIN    = 90-50
+TILT_ANGLE_MIN  = 50
+FW_ANGLE_MAX    = 97+50
+FW_ANGLE_MIN    = 97-50
 
 SCAN_POS = [[20, TILT_ANGLE_MIN], [50, TILT_ANGLE_MIN], [90, TILT_ANGLE_MIN], [130, TILT_ANGLE_MIN], [160, TILT_ANGLE_MIN], 
-            [160, 80], [130, 80], [90, 80], [50, 80], [20, 80]]
+            [160, 70], [130, 70], [90, 70], [50, 70], [20, 70]]
 
 bw = back_wheels.Back_Wheels()
 fw = front_wheels.Front_Wheels()
