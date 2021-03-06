@@ -252,7 +252,9 @@ x = 0			#initial x position of the center
 y = 0 			#initial y position of the center
 r = 0			#initial area of the rectangle
 
+global scan_count 
 scan_count = 0
+
 print("Begin!")
 
 class myThread (threading.Thread):
@@ -272,6 +274,7 @@ def control_module_thread():
     global fw_angle
     global pan_speed
     global tilt_speed
+    global scan_count
     # scan:
     if r < BALL_SIZE_MIN:	#x=0, y=0 and a counter
        bw.stop()
