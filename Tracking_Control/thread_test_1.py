@@ -341,6 +341,7 @@ def control_module_thread():
                         pan_servo.write(pan_angle)
                         tilt_servo.write(tilt_angle)
                     scan_count += 1
+                    print("what is r" + str(r))
                     sleep(1)
                     if scan_count >= len(SCAN_POS):
                         scan_count = 0
