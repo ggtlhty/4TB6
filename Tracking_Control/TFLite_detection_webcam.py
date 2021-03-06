@@ -381,9 +381,9 @@ while True:
            print("NONONONONONONONON")
            bw.stop()
        elif r < 1200:
-           print("FFFFFFFFFFFFF")
            fw_angle = 195-pan_angle
            if fw_angle < FW_ANGLE_MIN or fw_angle > FW_ANGLE_MAX:
+              print("AAAAAAAAAAAA")
               fw_angle = ((180 - fw_angle) - 90)/2 + 90
           #fw.angle = 105
 #              if front_wheels_enable:
@@ -392,6 +392,7 @@ while True:
               bw.speed = 30
               bw.backward()                                                              
            else:
+              print("FFFFFFFFFFFFFFFFFFFFFF")
 #          if front_wheels_enable:
               fw.turn(fw_angle)
 #          if rear_wheels_enable:
