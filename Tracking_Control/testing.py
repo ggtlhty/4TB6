@@ -81,7 +81,7 @@ def nothing(x):
 
 pan_angle = 90              # initial angle for pan
 tilt_angle = 20             # initial angle for tilt
-fw_angle = 105
+fw_angle = 90
 pan_speed = 0                # Discrete speed of pan servo  
 tilt_speed =0                # discrete speed of pan servo
 
