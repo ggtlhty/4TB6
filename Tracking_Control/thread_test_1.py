@@ -256,6 +256,11 @@ class myThread (threading.Thread):
       self.threadID = threadID
       self.name = name
       self.counter = counter
+      self.pan_angle = 90              # initial angle for pan
+      self.tilt_angle = 20             # initial angle for tilt
+      self.fw_angle = 105
+      self.pan_speed = 0                # Discrete speed of pan servo  
+      self.tilt_speed =0                # discrete speed of pan servo
    def run(self):
       print("Starting " + self.name)
       control_module_thread()
