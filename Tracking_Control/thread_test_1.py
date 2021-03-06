@@ -378,6 +378,7 @@ def control_module_thread():
                 bw.forward()
         else:
             bw.stop()
+        r = 0
         # Press 'q' to quit
 
 	
