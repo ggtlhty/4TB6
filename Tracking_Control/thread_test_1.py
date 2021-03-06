@@ -250,6 +250,7 @@ tilt_speed =0# discrete speed of pan servo
 
 x = 0			#initial x position of the center
 y = 0 			#initial y position of the center
+global r
 r = 0			#initial area of the rectangle
 
 global scan_count 
@@ -275,6 +276,7 @@ def control_module_thread():
     global pan_speed
     global tilt_speed
     global scan_count
+    global r
     # scan:
     if r < BALL_SIZE_MIN:	#x=0, y=0 and a counter
        bw.stop()
@@ -374,7 +376,7 @@ thread1.start()
 
 #for frame1 in camera.capture_continuous(rawCapture, format="bgr",use_video_port=True):
 while True:
-
+    global r
     # Start timer (for calculating frame rate)
     t1 = cv2.getTickCount()
 
