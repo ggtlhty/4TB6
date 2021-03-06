@@ -378,12 +378,22 @@ while True:
        
 # Distancing Maintaining 
        if r == 0:#counter needed
-           print("NONONONONONONONON")
            bw.stop()
+           if scan_enable:
+          #bw.stop()
+              pan_angle = SCAN_POS[scan_count][0]
+              tilt_angle = SCAN_POS[scan_count][1]
+              if pan_tilt_enable:
+                 pan_servo.write(pan_angle)
+                 tilt_servo.write(tilt_angle)
+              scan_count += 1
+              if scan_count >= len(SCAN_POS):
+                 scan_count = 0
+           else:
+              sleep(0.1)
        elif r < 1200:
            fw_angle = 195-pan_angle
            if fw_angle < FW_ANGLE_MIN or fw_angle > FW_ANGLE_MAX:
-              print("AAAAAAAAAAAA")
               fw_angle = ((180 - fw_angle) - 90)/2 + 90
           #fw.angle = 105
 #              if front_wheels_enable:
@@ -392,7 +402,6 @@ while True:
               bw.speed = 30
               bw.forward()                                                              
            else:
-              print("FFFFFFFFFFFFFFFFFFFFFF")
 #          if front_wheels_enable:
               fw.turn(fw_angle)
 #          if rear_wheels_enable:
@@ -403,7 +412,6 @@ while True:
 #           bw.speed = 25
 #           bw.backward()
        else:
-           print("BBBBBBBBBBBBB")
            bw.speed = 30
            bw.forward()
 		
