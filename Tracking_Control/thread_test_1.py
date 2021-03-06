@@ -335,7 +335,7 @@ def control_module_thread():
                     print("SCAN")
             #bw.stop()
                     pan_angle = SCAN_POS[scan_count][0]
-                    print("asdfasdfsasfd" + SCAN_POS[scan_count][0])
+                    print("asdfasdfsasfd" + str(SCAN_POS[scan_count][0]) )
                     tilt_angle = SCAN_POS[scan_count][1]
                     if pan_tilt_enable:
                         pan_servo.write(pan_angle)
