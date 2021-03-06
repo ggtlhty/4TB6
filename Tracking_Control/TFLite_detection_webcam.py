@@ -407,16 +407,18 @@ while True:
 #          if front_wheels_enable:
               fw.turn(fw_angle)
 #          if rear_wheels_enable:
-              bw.speed = 4 * int((1200-r)/1200*100)
-              if bw.speed > 100: bw.speed = 100
+              pid_speed = 4 * int((1200-r)/1200*60)
+              if pid_speed > 60 : pid_speed = 60
+              bw.speed = pid_speed
               bw.backward()
 #       elif r < 1400:
 #           print("BBBBBBBBBBBBB")
 #           bw.speed = 25
 #           bw.backward()
        else:
-           bw.speed = 4 * int((r-1200)/1200*100)
-           if bw.speed > 100: bw.speed = 100
+           pid_speed = 4 * int((r-1200)/1200*60)
+           if pid_speed > 60 : pid_speed = 60
+           bw.speed = pid_speed
            bw.forward()
 		
        
