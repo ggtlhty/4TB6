@@ -365,8 +365,6 @@ def control_module_thread():
         else:
             bw.speed = 30
             bw.forward()
-            
-        
     else:
         bw.stop()
         # Press 'q' to quit	
