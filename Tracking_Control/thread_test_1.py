@@ -257,9 +257,9 @@ class myThread (threading.Thread):
       self.name = name
       self.counter = counter
    def run(self):
-      print "Starting " + self.name
+      print("Starting " + self.name)
       control_module_thread()
-      print "Exiting " + self.name
+      print("Exiting " + self.name)
 
 def control_module_thread():
     # scan:
