@@ -376,7 +376,6 @@ thread1.start()
 
 #for frame1 in camera.capture_continuous(rawCapture, format="bgr",use_video_port=True):
 while True:
-    global r
     # Start timer (for calculating frame rate)
     t1 = cv2.getTickCount()
 
