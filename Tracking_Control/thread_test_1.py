@@ -356,7 +356,7 @@ def control_module_thread():
                     fw.turn(fw_angle)
     #          if rear_wheels_enable:
                     bw.speed = 30
-                    bw.forward()                                                              
+                    bw.forward()
                 else:
     #          if front_wheels_enable:
                     fw.turn(fw_angle)
@@ -366,6 +366,7 @@ def control_module_thread():
                         pid_speed = 60
                     bw.speed = pid_speed
                     bw.backward()
+                    print("spamming: " + str(r) + "pid speed" + str(pid_speed))
                 r = 0
     #       elif r < 1400:
     #           print("BBBBBBBBBBBBB")
