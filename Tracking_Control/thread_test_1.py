@@ -267,6 +267,11 @@ class myThread (threading.Thread):
       print("Exiting " + self.name)
 
 def control_module_thread():
+    global pan_angle
+    global tilt_angle
+    global fw_angle
+    global pan_speed
+    global tilt_speed
     # scan:
     if r < BALL_SIZE_MIN:	#x=0, y=0 and a counter
        bw.stop()
