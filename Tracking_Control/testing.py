@@ -95,6 +95,7 @@ print("Begin!")
 #for frame1 in camera.capture_continuous(rawCapture, format="bgr",use_video_port=True):
 while True:
    fw_angle = 96
+   pan_servo.write(90)
    fw.turn(fw_angle)
    bw.speed = 30
    bw.backward()
