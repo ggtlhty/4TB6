@@ -359,7 +359,7 @@ def control_module_thread():
                     fw.turn(fw_angle)
     #          if rear_wheels_enable:
                     pid_speed = int(1.5 * (1200-r)/1200*60)
-	            if pid_speed > 60 :
+                    if pid_speed > 60:
                         pid_speed = 60
                     bw.speed = pid_speed
                     bw.backward()
@@ -369,7 +369,7 @@ def control_module_thread():
     #           bw.backward()
             else:
                 pid_speed = int(1.5 * (r-1200)/1200*60)
-                if pid_speed > 60 :
+                if pid_speed > 60:
                     pid_speed = 60
                 bw.speed = pid_speed
                 bw.forward()
