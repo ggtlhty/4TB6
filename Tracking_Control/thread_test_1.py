@@ -242,7 +242,7 @@ pan_angle = 90 # initial angle for pan
 global tilt_angle
 tilt_angle = 20   # initial angle for tilt
 global fw_angle
-fw_angle = 105
+fw_angle = 97
 global pan_speed
 pan_speed = 0# Discrete speed of pan servo  
 global tilt_speed
@@ -345,7 +345,7 @@ def control_module_thread():
                 else:
                     sleep(0.1)
             elif r < 1200:
-                fw_angle = 195-pan_angle
+                fw_angle = 187-pan_angle
                 if fw_angle < FW_ANGLE_MIN or fw_angle > FW_ANGLE_MAX:
                     fw_angle = ((180 - fw_angle) - 90)/2 + 90
             #fw.angle = 105
@@ -358,14 +358,20 @@ def control_module_thread():
     #          if front_wheels_enable:
                     fw.turn(fw_angle)
     #          if rear_wheels_enable:
-                    bw.speed = 30
+                    pid_speed = int(1.5 * (1200-r)/1200*60)
+	            if pid_speed > 60 :
+                        pid_speed = 60
+                    bw.speed = pid_speed
                     bw.backward()
     #       elif r < 1400:
     #           print("BBBBBBBBBBBBB")
     #           bw.speed = 25
     #           bw.backward()
             else:
-                bw.speed = 30
+                pid_speed = int(1.5 * (r-1200)/1200*60)
+                if pid_speed > 60 :
+                    pid_speed = 60
+                bw.speed = pid_speed
                 bw.forward()
             
         
