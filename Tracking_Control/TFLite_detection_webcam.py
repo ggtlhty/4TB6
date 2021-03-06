@@ -379,7 +379,7 @@ while True:
 # Distancing Maintaining 
        if r == 0:#counter needed
            bw.stop()
-           sleep(10)
+           sleep(2)
            if scan_enable:
               print("SCAN")
           #bw.stop()
@@ -389,7 +389,7 @@ while True:
                  pan_servo.write(pan_angle)
                  tilt_servo.write(tilt_angle)
               scan_count += 1
-              sleep(0.3)
+              sleep(1)
               if scan_count >= len(SCAN_POS):
                  scan_count = 0
            else:
