@@ -22,7 +22,7 @@ import sys
 import time
 from threading import Thread
 import importlib.util
-import thread
+import threading
 
 #Import Package from Control
 from picar import front_wheels, back_wheels
@@ -250,7 +250,16 @@ r = 0			#initial area of the rectangle
 scan_count = 0
 print("Begin!")
 
-
+class myThread (threading.Thread):
+   def __init__(self, threadID, name, counter):
+      threading.Thread.__init__(self)
+      self.threadID = threadID
+      self.name = name
+      self.counter = counter
+   def run(self):
+      print "Starting " + self.name
+      control_module_thread()
+      print "Exiting " + self.name
 
 def control_module_thread():
     # scan:
@@ -347,7 +356,8 @@ def control_module_thread():
     # Press 'q' to quit	
 
 
-thread.start_new_thread( control_module_thread, ("Thread-1", 2, ) )
+thread1 = myThread(1, "Thread-1", 1)
+thread1.start()
 
 #for frame1 in camera.capture_continuous(rawCapture, format="bgr",use_video_port=True):
 while True:
