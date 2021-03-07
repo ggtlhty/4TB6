@@ -474,8 +474,7 @@ while True:
     x = (xmax+xmin)/2
     y = (ymax+ymin)/2
     r = (xmax-xmin)*(ymax-ymin)
-    if r > 0:
-        scan_i = 0
+    scan_i = 0
 
     print(x, y, r)
 
