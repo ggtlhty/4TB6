@@ -360,7 +360,7 @@ def control_module_thread():
                         fw_angle = ((180 - fw_angle) - 90)/2 + 90
                 #fw.angle = 105
                 #              if front_wheels_enable:
-		        fw.turn(fw_angle)
+                        fw.turn(fw_angle)
                 #          if rear_wheels_enable:
                       #  bw.speed = 30
                      #   bw.forward()
