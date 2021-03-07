@@ -277,6 +277,8 @@ def control_module_thread():
     global tilt_speed
     global scan_count
     global r
+    max_count = 5
+    i = 0
     # scan:
     while True:    
         if r < BALL_SIZE_MIN:	#x=0, y=0 and a counter
@@ -367,7 +369,10 @@ def control_module_thread():
                     bw.speed = pid_speed
                     bw.backward()
                     print("spamming: " + str(r) + "pid speed" + str(pid_speed))
-                r = 0
+                if( i == max_count)
+                    i = 0
+                    r = 0
+		i=i+1
     #       elif r < 1400:
     #           print("BBBBBBBBBBBBB")
     #           bw.speed = 25
