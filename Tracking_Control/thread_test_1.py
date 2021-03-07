@@ -372,6 +372,7 @@ def control_module_thread():
                         if pid_speed > 60:
                             pid_speed = 60
                         bw.speed = pid_speed
+                        print("fffffffffffffffffff")
                         bw.backward()
                         #print("spamming: " + str(r) + "pid speed" + str(pid_speed))
                 #       elif r < 1400:
