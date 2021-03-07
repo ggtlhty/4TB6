@@ -252,6 +252,7 @@ x = 0			#initial x position of the center
 y = 0 			#initial y position of the center
 global r
 global scan_i
+scan_i  = 0
 r = 0			#initial area of the rectangle
 
 global scan_count 
