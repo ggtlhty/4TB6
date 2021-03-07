@@ -94,7 +94,7 @@ print("Begin!")
 
 #for frame1 in camera.capture_continuous(rawCapture, format="bgr",use_video_port=True):
 while True:
-   fw_angle = 96
+   fw_angle = 97
    pan_servo.write(90)
    tilt_servo.write(20)
    fw.turn(fw_angle)
