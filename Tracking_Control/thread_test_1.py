@@ -285,7 +285,7 @@ def control_module_thread():
 
     while True:
         scan_i  = scan_i + 1
-        if(scan_i <= 1):
+        if(scan_i <= 2):
             if r < BALL_SIZE_MIN:	#x=0, y=0 and a counter
                 bw.stop()
                 if scan_enable:
