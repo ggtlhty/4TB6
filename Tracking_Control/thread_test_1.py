@@ -251,6 +251,7 @@ tilt_speed =0# discrete speed of pan servo
 x = 0			#initial x position of the center
 y = 0 			#initial y position of the center
 global r
+global scan_i
 r = 0			#initial area of the rectangle
 
 global scan_count 
@@ -277,115 +278,114 @@ def control_module_thread():
     global tilt_speed
     global scan_count
     global r
+    global scan_i
     max_count = 5
-    i = 0
-    # scan:
-    while True:    
-        if r < BALL_SIZE_MIN:	#x=0, y=0 and a counter
-            bw.stop()
-            if scan_enable:
-                #bw.stop()
-                pan_angle = SCAN_POS[scan_count][0]
-                print("asdfasfak" + SCAN_POS[scan_count][0])
-                tilt_angle = SCAN_POS[scan_count][1]
-                if pan_tilt_enable:
-                    pan_servo.write(pan_angle)
-                    tilt_servo.write(tilt_angle)
-                scan_count += 1
-                if scan_count >= len(SCAN_POS):
-                    scan_count = 0
-                else:
-                    sleep(0.1)
-                
-        elif r < BALL_SIZE_MAX:
-            delta_x = CENTER_X - x
-            delta_y = CENTER_Y - y
-            print("x = %s, delta_x = %s" % (x, delta_x))
-            print("y = %s, delta_y = %s" % (y, delta_y))
-            delta_pan = int(Constant_P * float(CAMERA_X_ANGLE) / SCREEN_WIDTH * delta_x + Constant_I * float(CAMERA_X_ANGLE) / SCREEN_WIDTH * x + Constant_D * float(CAMERA_X_ANGLE) / SCREEN_WIDTH * pan_speed)
-            if x==0 and y ==0: 
-                delta_pan = 0
-            print("delta_pan = %s" % delta_pan)
-            pan_angle += delta_pan
-            pan_speed = delta_pan
-            delta_tilt = int(Constant_P * float(CAMERA_Y_ANGLE) / SCREEN_HIGHT * delta_y + Constant_I * float(CAMERA_X_ANGLE) / SCREEN_WIDTH * y + Constant_D * float(CAMERA_X_ANGLE) / SCREEN_WIDTH * tilt_speed)
-            if x==0 and y ==0: 
-                delta_tilt = 0
-            print("delta_tilt = %s" % delta_tilt)
-            tilt_angle += delta_tilt
-            tilt_speed = delta_tilt
+    # scan
 
-            if pan_angle > PAN_ANGLE_MAX:
-                pan_angle = PAN_ANGLE_MAX
-            elif pan_angle < PAN_ANGLE_MIN:
-                pan_angle = PAN_ANGLE_MIN
-            if tilt_angle > TILT_ANGLE_MAX:
-                tilt_angle = TILT_ANGLE_MAX
-            elif tilt_angle < TILT_ANGLE_MIN:
-                tilt_angle = TILT_ANGLE_MIN
-                
-            if pan_tilt_enable:
-                pan_servo.write(pan_angle)
-                tilt_servo.write(tilt_angle)
-            sleep(0.01)
-        
-    # Distancing Maintaining 
-            if r == 0:#counter needed
+    while True:
+        scan_i  = scan_i + 1
+        if(scan_i <= 1):
+            if r < BALL_SIZE_MIN:	#x=0, y=0 and a counter
                 bw.stop()
-                sleep(2)
                 if scan_enable:
-                    print("SCAN")
-            #bw.stop()
+                    #bw.stop()
                     pan_angle = SCAN_POS[scan_count][0]
-                    print("asdfasdfsasfd" + str(SCAN_POS[scan_count][0]) )
+                    print("asdfasfak" + SCAN_POS[scan_count][0])
                     tilt_angle = SCAN_POS[scan_count][1]
                     if pan_tilt_enable:
                         pan_servo.write(pan_angle)
                         tilt_servo.write(tilt_angle)
                     scan_count += 1
-                    print("what is r" + str(r))
-                    sleep(1)
                     if scan_count >= len(SCAN_POS):
                         scan_count = 0
+                    else:
+                        sleep(0.1)
+                    
+            elif r < BALL_SIZE_MAX:
+                delta_x = CENTER_X - x
+                delta_y = CENTER_Y - y
+                print("x = %s, delta_x = %s" % (x, delta_x))
+                print("y = %s, delta_y = %s" % (y, delta_y))
+                delta_pan = int(Constant_P * float(CAMERA_X_ANGLE) / SCREEN_WIDTH * delta_x + Constant_I * float(CAMERA_X_ANGLE) / SCREEN_WIDTH * x + Constant_D * float(CAMERA_X_ANGLE) / SCREEN_WIDTH * pan_speed)
+                if x==0 and y ==0: 
+                    delta_pan = 0
+                print("delta_pan = %s" % delta_pan)
+                pan_angle += delta_pan
+                pan_speed = delta_pan
+                delta_tilt = int(Constant_P * float(CAMERA_Y_ANGLE) / SCREEN_HIGHT * delta_y + Constant_I * float(CAMERA_X_ANGLE) / SCREEN_WIDTH * y + Constant_D * float(CAMERA_X_ANGLE) / SCREEN_WIDTH * tilt_speed)
+                if x==0 and y ==0: 
+                    delta_tilt = 0
+                print("delta_tilt = %s" % delta_tilt)
+                tilt_angle += delta_tilt
+                tilt_speed = delta_tilt
+
+                if pan_angle > PAN_ANGLE_MAX:
+                    pan_angle = PAN_ANGLE_MAX
+                elif pan_angle < PAN_ANGLE_MIN:
+                    pan_angle = PAN_ANGLE_MIN
+                if tilt_angle > TILT_ANGLE_MAX:
+                    tilt_angle = TILT_ANGLE_MAX
+                elif tilt_angle < TILT_ANGLE_MIN:
+                    tilt_angle = TILT_ANGLE_MIN
+                    
+                if pan_tilt_enable:
+                    pan_servo.write(pan_angle)
+                    tilt_servo.write(tilt_angle)
+                sleep(0.01)
+            
+            # Distancing Maintaining 
+                if r == 0:#counter needed
+                    bw.stop()
+                    sleep(2)
+                    if scan_enable:
+                        print("SCAN")
+                #bw.stop()
+                        pan_angle = SCAN_POS[scan_count][0]
+                        print("asdfasdfsasfd" + str(SCAN_POS[scan_count][0]) )
+                        tilt_angle = SCAN_POS[scan_count][1]
+                        if pan_tilt_enable:
+                            pan_servo.write(pan_angle)
+                            tilt_servo.write(tilt_angle)
+                        scan_count += 1
+                        print("what is r" + str(r))
+                        sleep(1)
+                        if scan_count >= len(SCAN_POS):
+                            scan_count = 0
+                    else:
+                        sleep(0.1)
+                elif r < 1200:
+                    fw_angle = 187-pan_angle
+                    if fw_angle < FW_ANGLE_MIN or fw_angle > FW_ANGLE_MAX:
+                        fw_angle = ((180 - fw_angle) - 90)/2 + 90
+                #fw.angle = 105
+                #              if front_wheels_enable:
+                        fw.turn(fw_angle)
+                #          if rear_wheels_enable:
+                        bw.speed = 30
+                        bw.forward()
+                    else:
+                #          if front_wheels_enable:
+                        fw.turn(fw_angle)
+                #          if rear_wheels_enable:
+                        pid_speed = int(1.5 * (1200-r)/1200*60)
+                        if pid_speed > 60:
+                            pid_speed = 60
+                        bw.speed = pid_speed
+                        bw.backward()
+                        print("spamming: " + str(r) + "pid speed" + str(pid_speed))
+                #       elif r < 1400:
+                #           print("BBBBBBBBBBBBB")
+                #           bw.speed = 25
+                #           bw.backward()
                 else:
-                    sleep(0.1)
-            elif r < 1200:
-                fw_angle = 187-pan_angle
-                if fw_angle < FW_ANGLE_MIN or fw_angle > FW_ANGLE_MAX:
-                    fw_angle = ((180 - fw_angle) - 90)/2 + 90
-            #fw.angle = 105
-    #              if front_wheels_enable:
-                    fw.turn(fw_angle)
-    #          if rear_wheels_enable:
-                    bw.speed = 30
-                    bw.forward()
-                else:
-    #          if front_wheels_enable:
-                    fw.turn(fw_angle)
-    #          if rear_wheels_enable:
-                    pid_speed = int(1.5 * (1200-r)/1200*60)
+                    pid_speed = int(1.5 * (r-1200)/1200*60)
                     if pid_speed > 60:
                         pid_speed = 60
                     bw.speed = pid_speed
-                    bw.backward()
-                    print("spamming: " + str(r) + "pid speed" + str(pid_speed))
-                if( i == max_count):
-                    i = 0
-                    r = 0
-                    i=i+1
-    #       elif r < 1400:
-    #           print("BBBBBBBBBBBBB")
-    #           bw.speed = 25
-    #           bw.backward()
+                    bw.forward()
             else:
-                pid_speed = int(1.5 * (r-1200)/1200*60)
-                if pid_speed > 60:
-                    pid_speed = 60
-                bw.speed = pid_speed
-                bw.forward()
-        else:
-            bw.stop()
-        # Press 'q' to quit
+                bw.stop()
+                # Press 'q' to quit
 
 	
 
@@ -472,6 +472,7 @@ while True:
     x = (xmax+xmin)/2
     y = (ymax+ymin)/2
     r = (xmax-xmin)*(ymax-ymin)
+    scan_i = 0
 
     print(x, y, r)
 
