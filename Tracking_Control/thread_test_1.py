@@ -369,7 +369,7 @@ def control_module_thread():
                     bw.speed = pid_speed
                     bw.backward()
                     print("spamming: " + str(r) + "pid speed" + str(pid_speed))
-                if( i == max_count)
+                if( i == max_count):
                     i = 0
                     r = 0
 		i=i+1
