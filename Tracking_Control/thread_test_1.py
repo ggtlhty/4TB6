@@ -372,7 +372,7 @@ def control_module_thread():
                 if( i == max_count):
                     i = 0
                     r = 0
-		i=i+1
+                    i=i+1
     #       elif r < 1400:
     #           print("BBBBBBBBBBBBB")
     #           bw.speed = 25
